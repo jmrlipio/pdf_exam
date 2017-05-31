@@ -1,0 +1,1 @@
+<a href="{{ route('pdfview',['download'=>'pdf']) }}">Download PDF</a>
