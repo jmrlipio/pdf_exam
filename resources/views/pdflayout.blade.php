@@ -50,7 +50,7 @@
             border: 5px solid #01b5e6;
   
         }
-        .headercont .col-md-12 h1.name
+        h1.name
         {
             text-transform: uppercase;
         }
@@ -119,8 +119,7 @@
             text-align: left;
             background: #1c3d50;
             color: white;
-            padding: 10px;
-
+            padding: 5px;
             border-left: 10px solid #00b8e8; 
         }
         .work-personal h4{font-size: 15px;}
@@ -154,7 +153,7 @@
                 <h1 class="text-center">{{ $users->position }}</h1>
                 </div>
                 
-                <div class="row" style="margin-top: 50px;">
+                <div class="row" style="margin-top: 30px;">
                 <p>{{ $users->about_me }}</p>
                 </div>
                 
