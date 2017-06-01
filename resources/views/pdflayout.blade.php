@@ -109,6 +109,7 @@
         .step-nav ul li
         {
             z-index: 100;
+            position: relative;
             float: left;
             list-style-type: none;
             display: inline-block;
@@ -126,7 +127,7 @@
         }
         .step-nav ul li p
         {
-            left: 35px;
+            left: -40px;
             width: 100px;   
             text-align: center;
         }        
