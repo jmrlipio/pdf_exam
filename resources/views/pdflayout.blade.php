@@ -30,6 +30,7 @@
         }
         body{margin: 0; padding: 0;}
         p{font-size: 12px;}
+        .margin-0{margin: 0;}
         .primarycolor
         {
             color: #01b8e4;
@@ -67,34 +68,6 @@
                 margin-top: -30px;
                 width: 1000px;
         }
-        .step-navigation ul li
-        {
-                list-style-type: none;
-    display: inline-table;
-    height: 20px;
-    width: 20px;
-    border-radius: 300px;
-    border: 2px solid #0e374d;
-    background: white;
-    float: left;
-    margin-top: 23px;
-    margin-left: 160px;
-        }
-        .step-navigation ul li:first-child
-        {
-            margin-left: -10px;
-            background: #0e374d;
-            padding: 8px;
-        }
-        .step-navigation ul li:last-child
-        {
-                float: right;
-                background: #0e374d;
-                margin-left: 90px;
-                position: absolute;
-                right: 40px;
-                padding: 8px;
-        }
         .step-navigation ul li p
         {
                position: absolute;
@@ -102,11 +75,6 @@
                 margin-left: -70px;
                 width: 160px;
                 text-align: center;
-        }
-        .step-navigation .main-line
-        {
-            background: #0e374d;
-            min-height: 5px;
         }
         .work-personal, .skills
         {
@@ -128,6 +96,41 @@
             text-align: left;
         }    
         
+        .step-nav .line{background: #1c3d50; height: 5px; position: absolute; width: 95%; top: -10px; z-index: -10;
+    top: 10px;}
+        .step-nav ul{margin: 0px; padding: 0px;}
+        .step-nav ul li
+        {
+            z-index: 100;
+            float: left;
+            list-style-type: none;
+            display: inline-block;
+            height: 20px;
+            margin-left: 60px;
+            margin-right: 30px;
+            width: 20px;
+            border-top-left-radius: 10px 10px;
+            border-bottom-right-radius: 10% 10%;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px 10px;
+            border-bottom-right-radius: 10px 10px;
+            background: white;
+            border:  1px solid #1c3d50;
+        }
+        .step-nav ul li p
+        {
+            left: 35px;
+            width: 100px;   
+            text-align: center;
+        }        
+        .step-nav ul li.first-li
+        {
+            margin-left: 0px;
+        }
+        .step-nav ul li.first-li, .step-nav ul li.last-li
+        {
+            background: #1c3d50;
+        }
         .footer
         {
         border-top:  10px solid #07b2ea; position: relative; height: 100px; background: #1c3d50;
@@ -150,15 +153,28 @@
 
                 <div class="row">
                 <h1 class="name primarycolor text-center">{{ $users->first_name.' '.$users->last_name }} </h1>
-                <h1 class="text-center">{{ $users->position }}</h1>
+                <h1 class="text-center margin-0">{{ $users->position }}</h1>
                 </div>
                 
-                <div class="row" style="margin-top: 30px;">
+                <div class="row" style="margin-top: 40px;">
                 <p>{{ $users->about_me }}</p>
                 </div>
                 
+                <div class="row step-nav" style="margin-top: 30px;">
+                <div class="col-md-12">
+                    <ul>
+                        <li class="first-li"></li>
+                         @foreach(json_decode($users->educations) as $edu)
+                            <li><p style="position: absolute; top: 30px;">{{ $edu->title }}</p></li>
+                         @endforeach
+                        <li class="last-li" style="float: right;"></li>
+                    </ul>
+                    <div class="line"></div>
+                </div>
+                </div>
                 
-                <div class="row" style="margin-top: 50px;">
+                
+                <div class="row" style="margin-top: 80px;">
                 <div class="col-md-12 alert alert-info work-personal text-left" style="position: relative; display: block;">
                             
                             <table style="margin: 0px; padding: 0px; width: 100%;">
