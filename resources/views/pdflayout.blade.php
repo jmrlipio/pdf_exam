@@ -1,4 +1,7 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!-- Styles -->
         <!-- Minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" media="all">
@@ -18,6 +21,13 @@
 <!-- Minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <style type="text/css" media="all">
+        .container{max-width: 900px;}
+        thead:before, thead:after,
+        tbody:before, tbody:after,
+        tfoot:before, tfoot:after
+        {
+            display: none;
+        }
         body{margin: 0; padding: 0;}
         p{font-size: 12px;}
         .primarycolor
@@ -26,22 +36,19 @@
         }
         .headercont
         {
-            background: #1c3d50; border-bottom: 5px solid #01b5e6; height: 200px;
+            background: #1c3d50; border-bottom: 10px solid #01b5e6; height: 200px;
         }
         .headercont .col-md-12
         {
-                position: absolute;
                 top: 70px;
                 width: 100%;
-                text-align: center;
         }
         .headercont .col-md-12 img
         {
             width: 200px;
             height: 200px;
             border: 5px solid #01b5e6;
-            margin: 0;
-            
+  
         }
         .headercont .col-md-12 h1.name
         {
@@ -113,9 +120,10 @@
             background: #1c3d50;
             color: white;
             padding: 10px;
+
             border-left: 10px solid #00b8e8; 
         }
-        
+        .work-personal h4{font-size: 15px;}
         .work-personal h4, .work-personal p
         {
             text-align: left;
@@ -127,11 +135,15 @@
         margin-top: 50px;
         }
         </style>
+</head>
 
+<body>
         <div class="row headercont">
-            <div class="col-md-12">
-                <img src="https://assets.entrepreneur.com/content/16x9/822/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg" class="img-responsive center-block" style="border-radius: 100px;" />     
+        <div class="container">
+            <div class="col-md-12 text-center">
+                <img src="https://assets.entrepreneur.com/content/16x9/822/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg" style="border-radius: 100px;" />     
             </div>
+        </div>
         </div>
         
          <div class="row" style="margin-top: 100px;">
@@ -149,8 +161,8 @@
                 
                 <div class="row" style="margin-top: 50px;">
                 <div class="col-md-12 alert alert-info work-personal text-left" style="position: relative; display: block;">
-                            <table style="margin: 0px; padding: 0px;" cellspacing="15" cellpadding="5">
-
+                            
+                            <table style="margin: 0px; padding: 0px; width: 100%;">
                                 <thead>
                                 <tr>
                                     <td width="40" style="padding-right: 30px;"><h3>Work Experience</h3></td>
@@ -159,6 +171,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                
                                     <td style="width: 300px; padding-right: 50px;">
                                 @foreach(json_decode($users->experiences) as $exp)
                                     <h4>{{ $exp->position }} [ {{ date('F Y', strtotime($exp->start_date)) }} - {{ date('F Y', strtotime($exp->end_date)) }}]</h4>
@@ -166,7 +179,7 @@
                                 @endforeach
                                     </td>
                                     
-                                    <td style="width: 300px;">
+                                    <td style="width: 300px; vertical-align: top;">
                                         <h4>Birtday: {{ date('d F Y', strtotime($users->birthday)) }}</h4>
                                         <h4>Phone: +{{$users->phone}}</h4>
                                         <h4>E-mail: {{$users->email}}</h4>
@@ -183,7 +196,7 @@
                 <div class="row">
                 <div class="col-md-12 alert alert-info skills text-left">
                 
-                <table style="margin: 0px; padding: 0px;" cellspacing="15" cellpadding="5">
+                <table style="margin: 0px; padding: 0px; width: 100%;">
                             
                                 <thead>
                                 <tr>
@@ -217,3 +230,5 @@
             </div>
          </div>
          
+</body>
+</html>

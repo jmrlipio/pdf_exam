@@ -34,7 +34,8 @@ class PdfController extends Controller
         if($request->has('download'))
         {
             $users = DB::table('user_templates')->where('id', '38')->first();
-            $pdf =  PDF::loadView('pdflayout', compact('users'));
+            $html = view('pdflayout', compact('users'))->render();
+            $pdf =  PDF::loadHTML($html);
             //return $pdf->download('pdfview.pdf');
             return $pdf->stream();
         }
