@@ -103,7 +103,7 @@
             text-align: left;
         }    
         
-        .step-nav .line{background: #1c3d50; height: 5px; position: absolute; width: 95%; top: -10px; z-index: -10;
+        .step-nav .line{background: #1c3d50; height: 5px; position: absolute; width: 100%; top: -10px; z-index: -10;
     top: 10px;}
         .step-nav ul{margin: 0px; padding: 0px;}
         .step-nav ul li
@@ -139,6 +139,10 @@
         {
             background: #1c3d50;
         }
+        .step-nav ul li.last-li
+        {
+             margin-right: 0px;
+        }
         .footer
         {
         border-top:  10px solid #07b2ea; position: relative; height: 53px; background: #1c3d50;
@@ -169,7 +173,7 @@
                 </div>
                 
                 <div class="row step-nav" style="margin-top: 20px;">
-                <div class="col-md-12">
+                <div class="col-md-12" style="padding: 0px;">
                    
                    <?php 
                     $sorted = order_array(json_decode($users->educations), 'end_date');
