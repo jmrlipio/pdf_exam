@@ -80,4 +80,10 @@
   'glyphicons halflings' => array(
     'normal' => $fontDir . '\c47afe5539ba1b2094563d54dce2def7',
   ),
+  'open sans' => array(
+    'normal' => $fontDir . '\d5f89802aadbdba06ff0fc272c8d0f41',
+  ),
+  'roboto' => array(
+    'normal' => $fontDir . '\8f6378dd584071c9f5f58902960ddec1',
+  ),
 ) ?>
