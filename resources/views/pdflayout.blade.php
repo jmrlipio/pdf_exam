@@ -204,7 +204,11 @@ ul.str_meter li.active
 <ul>
     <li class="first-li"></li>
         @foreach($sorted as $edu)
-            <li><p style="position: absolute; top: 30px;">{{ $edu['title'] }}</p></li>
+            <?php 
+                $arr = explode("-", $edu['end_date'], 2);
+                $year = $arr[0];
+            ?>
+            <li><p style="position: absolute; top: 30px;">{{ $edu['title'] }}-{{ $year }}</p></li>
         @endforeach
     <li class="last-li" style="float: right;"></li>
 </ul>
@@ -228,13 +232,13 @@ ul.str_meter li.active
     
     <td class="p-r-50" style="width: 300px;">
         @foreach(json_decode($users->experiences) as $exp)
-            <h4><strong>{{ $exp->position }}</strong> [ {{ date('F Y', strtotime($exp->start_date)) }} - {{ date('F Y', strtotime($exp->end_date)) }}]</h4>
+            <h4><strong>{{ $exp->position }}</strong> [ {{ date('M Y', strtotime($exp->start_date)) }} - {{ date('M Y', strtotime($exp->end_date)) }}]</h4>
             <p>{{ $exp->description}}</p>
         @endforeach
     </td>
     
     <td style="width: 300px; vertical-align: top;">
-        <h4>Birthday: {{ date('d F Y', strtotime($users->birthday)) }}</h4>
+        <h4>Birthday: {{ date('d M Y', strtotime($users->birthday)) }}</h4>
         <h4>Phone: +{{$users->phone}}</h4>
         <h4>E-mail: {{$users->email}}</h4>
         <h4>Address: {{$users->street_address}}</h4>
