@@ -32,7 +32,7 @@ class PdfController extends Controller
     public function pdfview(Request $request)
     {
         
-        if(!$request->has('download'))
+        if($request->has('download'))
         {
             $users = DB::table('user_templates')->where('id', '38')->first();
 
