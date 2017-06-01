@@ -25,7 +25,8 @@ class PdfController extends Controller
         //return dd($users);
         
         $users = DB::table('user_templates')->where('id', '38')->first();
-        return view('pdflayout', compact('users'));
+        return dd($users->experiences);
+        //return view('pdflayout', compact('users'));
     }
     
     public function pdfview(Request $request)
@@ -34,7 +35,8 @@ class PdfController extends Controller
         if($request->has('download'))
         {
             $users = DB::table('user_templates')->where('id', '38')->first();
-            $pdf =  PDF::loadView('pdflayout', compact('users'));
+            $html = view('pdflayout', compact('users'))->render();
+            $pdf =  PDF::loadHTML($html);
             //return $pdf->download('pdfview.pdf');
             return $pdf->stream();
         }
