@@ -28,16 +28,27 @@ class PdfController extends Controller
 
         return view('pdflayout', compact('users'));
     }
-    
+
     public function pdfview(Request $request)
     {
         
-        if($request->has('download'))
+        if(!$request->has('download'))
         {
             $users = DB::table('user_templates')->where('id', '38')->first();
-            $pdf =  PDF::loadView('pdflayout', compact('users'));
+
+            $html = view('pdflayout', compact('users'))->render();
+            
+            $source = base_path().'/storage/my_pdf.pdf';
+            
+            if (file_exists($source)):
+                unlink($source);
+            endif;
+            
+            $pdf =  PDF::loadHTML($html)->save(base_path().'/storage/my_pdf.pdf');
+
             //return $pdf->download('pdfview.pdf');
             return $pdf->stream();
+            
         }
     }
 }

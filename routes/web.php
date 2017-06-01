@@ -12,5 +12,4 @@
 */
 
 Route::get('/',array('as'=>'home','uses'=>'PdfController@index'));
-Route::get('/test',array('as'=>'home','uses'=>'PdfController@test'));
 Route::get('pdfview',array('as'=>'pdfview','uses'=>'PdfController@pdfview'));
