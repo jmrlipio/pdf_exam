@@ -114,7 +114,7 @@
             list-style-type: none;
             display: inline-block;
             height: 20px;
-            margin-left: 60px;
+            margin-left: 70px;
             margin-right: 30px;
             width: 20px;
             border-top-left-radius: 10px 10px;
