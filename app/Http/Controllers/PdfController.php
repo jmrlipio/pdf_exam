@@ -25,8 +25,8 @@ class PdfController extends Controller
         //return dd($users);
         
         $users = DB::table('user_templates')->where('id', '38')->first();
-        return dd($users->experiences);
-        //return view('pdflayout', compact('users'));
+        //return dd($users->skills);
+        return view('pdflayout', compact('users'));
     }
     
     public function pdfview(Request $request)

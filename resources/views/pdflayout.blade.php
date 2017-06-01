@@ -21,7 +21,14 @@
 <!-- Minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <style type="text/css" media="all">
+        @page {
+           margin: 0cm;
+           padding: 0cm;
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
         .container{max-width: 900px;}
+        .row{position: relative; display: block;}
         thead:before, thead:after,
         tbody:before, tbody:after,
         tfoot:before, tfoot:after
@@ -37,21 +44,21 @@
         }
         .headercont
         {
-            background: #1c3d50; border-bottom: 10px solid #01b5e6; height: 200px;
+            background: #1c3d50; border-bottom: 10px solid #01b5e6; height: 100px;
         }
         .headercont .col-md-12
         {
-                top: 70px;
+                top: 20px;
                 width: 100%;
         }
         .headercont .col-md-12 img
         {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             border: 5px solid #01b5e6;
   
         }
-        h1.name
+        h3.name
         {
             text-transform: uppercase;
         }
@@ -133,8 +140,8 @@
         }
         .footer
         {
-        border-top:  10px solid #07b2ea; position: relative; height: 100px; background: #1c3d50;
-        margin-top: 50px;
+        border-top:  10px solid #07b2ea; position: relative; height: 53px; background: #1c3d50;
+        margin-top: 1px;
         }
         </style>
 </head>
@@ -143,38 +150,43 @@
         <div class="row headercont">
         <div class="container">
             <div class="col-md-12 text-center">
-                <img src="https://assets.entrepreneur.com/content/16x9/822/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg" style="border-radius: 100px;" />     
+                <img src="https://assets.entrepreneur.com/content/16x9/822/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg" style="border-radius: 80px;" />     
             </div>
         </div>
         </div>
         
-         <div class="row" style="margin-top: 100px;">
+         <div class="row" style="margin-top: 85px;">
          <div class="container">
 
                 <div class="row">
-                <h1 class="name primarycolor text-center">{{ $users->first_name.' '.$users->last_name }} </h1>
-                <h1 class="text-center margin-0">{{ $users->position }}</h1>
+                <h3 class="name primarycolor text-center">{{ $users->first_name.' '.$users->last_name }} </h3>
+                <h3 class="text-center margin-0">{{ $users->position }}</h1>
                 </div>
                 
-                <div class="row" style="margin-top: 40px;">
+                <div class="row" style="margin-top: 20px;">
                 <p>{{ $users->about_me }}</p>
                 </div>
                 
-                <div class="row step-nav" style="margin-top: 30px;">
+                <div class="row step-nav" style="margin-top: 20px;">
                 <div class="col-md-12">
+                   
+                   <?php 
+                    $sorted = order_array(json_decode($users->educations), 'end_date');
+                   ?>
                     <ul>
                         <li class="first-li"></li>
-                         @foreach(json_decode($users->educations) as $edu)
-                            <li><p style="position: absolute; top: 30px;">{{ $edu->title }}</p></li>
+                         @foreach($sorted as $edu)
+                            <li><p style="position: absolute; top: 30px;">{{ $edu['title'] }}</p></li>
                          @endforeach
                         <li class="last-li" style="float: right;"></li>
                     </ul>
                     <div class="line"></div>
                 </div>
+                
                 </div>
                 
                 
-                <div class="row" style="margin-top: 80px;">
+                <div class="row" style="margin-top: 70px;">
                 <div class="col-md-12 alert alert-info work-personal text-left" style="position: relative; display: block;">
                             
                             <table style="margin: 0px; padding: 0px; width: 100%;">
@@ -189,7 +201,7 @@
                                 
                                     <td style="width: 300px; padding-right: 50px;">
                                 @foreach(json_decode($users->experiences) as $exp)
-                                    <h4>{{ $exp->position }} [ {{ date('F Y', strtotime($exp->start_date)) }} - {{ date('F Y', strtotime($exp->end_date)) }}]</h4>
+                                    <h4><strong>{{ $exp->position }}</strong> [ {{ date('F Y', strtotime($exp->start_date)) }} - {{ date('F Y', strtotime($exp->end_date)) }}]</h4>
                                     <p>{{ $exp->description}}</p>
                                 @endforeach
                                     </td>
@@ -209,7 +221,7 @@
                 </div>
                 
                 <div class="row">
-                <div class="col-md-12 alert alert-info skills text-left">
+                <div class="col-md-12 alert alert-info skills text-left" style="padding-top: 0px;">
                 
                 <table style="margin: 0px; padding: 0px; width: 100%;">
                             
@@ -244,6 +256,8 @@
     
             </div>
          </div>
+         
+         <div class="row footer"></div>
          
 </body>
 </html>
