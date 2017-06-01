@@ -18,16 +18,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <style type="text/css" media="all">
-@page 
-{
-margin: 0cm;
-padding: 0cm;
-}
-*{ 
-    margin:0; 
-    padding:0; 
-    box-sizing:border-box; 
-}
+@page { margin: 0px; }
+body { margin: 0px; }
+html { margin: 0px}
 .container{max-width: 900px;}
 .row{position: relative; display: block;}
 table
@@ -171,7 +164,10 @@ ul.str_meter li.active
 }
 .footer
 {
-    border-top:  10px solid #07b2ea; position: relative; height: 40px; background: #1c3d50;
+    position: fixed;
+    bottom: 0;
+    border-top:  10px solid #07b2ea;
+    height: 50px; background: #1c3d50;
 }
 </style>
 </head>
@@ -273,8 +269,13 @@ ul.str_meter li.active
                         </td>
                         <td class="p-l-20" style="width: 150px;"> 
                             <ul class="str_meter">
-                            {!! checkactivevalue($skill->strength) !!}
+                            <?php $strength = $skill->strength / 20; ?>
+                            @for($x = 1; $x <= 5; $x++)
+                            <li class="{{ $x < $strength ? 'active' : '' }}"></li>
+                            @endfor
+           
                             </ul>
+                             
                         </td>
                     </tr>
                     @endforeach
