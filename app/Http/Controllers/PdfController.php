@@ -19,16 +19,6 @@ class PdfController extends Controller
         return view('home');
     }
     
-    public function test()
-    {
-        //$users = DB::table('user_templates')->where('id', '38')->first();
-        //return dd($users);
-        
-        $users = DB::table('user_templates')->where('id', '38')->first();
-        //return dd($users->skills);
-        return view('pdflayout', compact('users'));
-    }
-    
     public function pdfview(Request $request)
     {
         
@@ -36,9 +26,17 @@ class PdfController extends Controller
         {
             $users = DB::table('user_templates')->where('id', '38')->first();
             $html = view('pdflayout', compact('users'))->render();
-            $pdf =  PDF::loadHTML($html);
+            
+            $source = base_path().'/storage/my_pdf.pdf';
+            
+            if (file_exists($source)):
+                unlink($source);
+            endif;
+            
+            $pdf =  PDF::loadHTML($html)->save(base_path().'/storage/my_pdf.pdf');
             //return $pdf->download('pdfview.pdf');
             return $pdf->stream();
+            
         }
     }
 }
